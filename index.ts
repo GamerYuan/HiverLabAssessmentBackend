@@ -26,18 +26,14 @@ export default {
 			// Process the new score
 			await processNewScore(env, name, Number(score));
 		
-			return new Response("Test");
+			return new Response("New score added");
 		});
 		
 		// Return the high scores
 		router.get('/highscores', async() => {
 			const scores = await fetchScoresFromKV(env);
 		
-			return new Response(JSON.stringify(scores), {
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			});
+			return Response.json(scores);
 		});
 
 		// Return 404 for all other requests

@@ -2,11 +2,16 @@ import { Env } from '../index'; // Assuming you have an Env model defined
 import { Score } from './types/scores'; // Assuming you have a Scores model defined
 
 
-export async function fetchScoresFromKV(env: Env): Promise<string> {
+export async function fetchScoresFromKV(env: Env): Promise<Score[]> {
     // Fetch the JSON string from Cloudflare KV storage
     const jsonString = await env.SCORES.get<string>("scores")
 
-    return jsonString;
+    if (!jsonString) {
+        return [];
+    }
+    
+    // Parse the JSON string into an array of scores
+    return JSON.parse(jsonString);
 }
 
 async function updateScoresInKV(env: Env, scores: Score[]) {
@@ -20,12 +25,7 @@ async function updateScoresInKV(env: Env, scores: Score[]) {
 export async function processNewScore(env:Env, name: string, score: number) {
 
     // Fetch the scores from KV
-    const scores = JSON.parse(await fetchScoresFromKV(env)) as Score[];
-
-    // Check if scores is an array, if not, assign it to an empty array
-    if (!Array.isArray(scores)) {
-        return []
-    }
+    const scores = await fetchScoresFromKV(env);
 
     // Create a new score object
     const newScore: Score = {
