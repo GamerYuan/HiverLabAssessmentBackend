@@ -8,7 +8,10 @@
 		"test": "vitest"
 	},
 	"dependencies": {
-		"itty-router": "^2.6.1"
+		"@cloudflare/workers-types": "^4.20240117.0",
+		"cloudflare-workers": "^0.0.14",
+		"create-cloudflare": "^2.9.3",
+		"itty-router": "^2.6.6"
 	},
 	"devDependencies": {
 		"wrangler": "^3.0.0"
