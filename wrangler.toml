@@ -1,3 +1,7 @@
-name = "" # todo
-main = "index.js"
+name = "hiverlab-assessment-backend"
+main = "index.ts"
 compatibility_date = "2022-05-03"
+
+[[kv_namespaces]]
+binding = "SCORES"
+id = "638f1dfe95484c80895f20949435d4d5"

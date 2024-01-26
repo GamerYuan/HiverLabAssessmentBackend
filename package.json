@@ -1,10 +1,10 @@
 {
-	"name": "template-worker-router",
+	"name": "hiverlab-assessment-backend",
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
-		"deploy": "wrangler deploy index.js",
-		"dev": "wrangler dev index.js",
+		"deploy": "wrangler deploy index.ts",
+		"dev": "wrangler dev index.ts",
 		"test": "vitest"
 	},
 	"dependencies": {
